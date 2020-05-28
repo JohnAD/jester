@@ -75,7 +75,12 @@ type
     of RouteCode:
       data: ResponseData
 
-const jesterVer = "0.4.3"
+const nimbleFile = staticRead("jesterwithplugins.nimble")
+let nimbleVerRe = re(".*version\\s+=\\s+.([^\"]+)", flags={reStudy, reDotAll})
+var nimbleMatches: array[1, string]
+if not match(nimbleFile, nimbleVerRe, nimbleMatches, start=0):
+  nimbleMatches[0] = "UNKNOWN"
+let jesterVer = nimbleMatches[0]
 
 proc toStr(headers: Option[RawHeaders]): string =
   return $newHttpHeaders(headers.get(@({:})))
@@ -476,18 +481,18 @@ proc serve*(
     setLogFilter(when defined(release): lvlInfo else: lvlDebug)
 
   if self.settings.bindAddr.len > 0:
-    logging.info("Jester is making jokes at http://$1:$2$3" %
+    logging.info("Jester $1 is making jokes at http://$2:$3$4" %
       [
-        self.settings.bindAddr, $self.settings.port, self.settings.appName
+        jesterVer, self.settings.bindAddr, $self.settings.port, self.settings.appName
       ]
     )
   else:
     when defined(windows):
-      logging.info("Jester is making jokes at http://127.0.0.1:$1$2 (all interfaces)" %
-                   [$self.settings.port, self.settings.appName])
+      logging.info("Jester $1 is making jokes at http://127.0.0.1:$2$3 (all interfaces)" %
+                   [jesterVer, $self.settings.port, self.settings.appName])
     else:
-      logging.info("Jester is making jokes at http://0.0.0.0:$1$2" %
-                   [$self.settings.port, self.settings.appName])
+      logging.info("Jester $1 is making jokes at http://0.0.0.0:$2$3" %
+                   [jesterVer, $self.settings.port, self.settings.appName])
 
   var jes = self
   when useHttpBeast:
