@@ -37,9 +37,9 @@ View with a browser at: [localhost:5000](http://localhost:5000)
 
 ## [WIP] Plugins
 
-For using plugins, see [plugins](../blob/master/docs/plugin.md).
+For using plugins, see [plugins](../master/docs/plugin.md).
 
-To develop a plugin, see [plugin development](../blob/master/docs/plugin-develop.md).
+To develop a plugin, see [plugin development](../master/docs/plugin-develop.md).
 
 ## Further documentation
 
