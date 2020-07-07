@@ -5,8 +5,8 @@ import net, strtabs, re, tables, parseutils, os, strutils, uri,
        logging, httpcore, asyncfile, macrocache, json, options,
        strformat
 
-import jester/private/[errorpages, utils]
-import jester/[request, patterns]
+import jesterwithplugins/private/[errorpages, utils]
+import jesterwithplugins/[request, patterns]
 
 from cgi import decodeData, decodeUrl, CgiError
 
@@ -75,7 +75,7 @@ type
     of RouteCode:
       data: ResponseData
 
-const nimbleFile = staticRead("jesterwithplugins.nimble")
+const nimbleFile = staticRead("../jesterwithplugins.nimble")
 let nimbleVerRe = re(".*version\\s+=\\s+.([^\"]+)", flags={reStudy, reDotAll})
 var nimbleMatches: array[1, string]
 if not match(nimbleFile, nimbleVerRe, nimbleMatches, start=0):

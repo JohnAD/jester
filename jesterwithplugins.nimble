@@ -1,9 +1,10 @@
 # Package
 
-version       = "0.5.0" # Be sure to update jester.jesterVer too!
+version       = "0.5.1"
 author        = "Dominik Picheta"
-description   = "A sinatra-like web framework for Nim."
+description   = "A sinatra-like web framework (with plugins)."
 license       = "MIT"
+srcDir        = "src"
 
 skipFiles = @["todo.markdown"]
 skipDirs = @["tests"]
