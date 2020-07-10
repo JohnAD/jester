@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.5.1"
+version       = "0.5.2" # also change this at src/jesterwithplugins.nim line 4
 author        = "Dominik Picheta"
 description   = "A sinatra-like web framework (with plugins)."
 license       = "MIT"

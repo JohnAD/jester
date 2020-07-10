@@ -1,5 +1,8 @@
 # Copyright (C) 2015 Dominik Picheta
 # MIT License - Look at license.txt for details.
+
+let jesterVer = "0.5.2"
+
 import net, strtabs, re, tables, parseutils, os, strutils, uri,
        times, mimetypes, asyncnet, asyncdispatch, macros, md5,
        logging, httpcore, asyncfile, macrocache, json, options,
@@ -75,12 +78,6 @@ type
     of RouteCode:
       data: ResponseData
 
-const nimbleFile = staticRead("../jesterwithplugins.nimble")
-let nimbleVerRe = re(".*version\\s+=\\s+.([^\"]+)", flags={reStudy, reDotAll})
-var nimbleMatches: array[1, string]
-if not match(nimbleFile, nimbleVerRe, nimbleMatches, start=0):
-  nimbleMatches[0] = "UNKNOWN"
-let jesterVer = nimbleMatches[0]
 
 proc toStr(headers: Option[RawHeaders]): string =
   return $newHttpHeaders(headers.get(@({:})))
